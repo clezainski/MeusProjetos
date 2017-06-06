@@ -92,7 +92,7 @@
                         </tr>
                     </SelectedItemTemplate>
                 </asp:ListView>   
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:CadastroBancarioDBConnectionString %>" SelectCommand="SELECT Nome, Gerente FROM Agencias WHERE (Ativo = 1) ORDER BY Nome">
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:CadastroCorrentistaDBConnectionString %>" SelectCommand="SELECT Nome, Gerente FROM Agencias WHERE (Ativo = 1) ORDER BY Nome">
                 </asp:SqlDataSource>
             </div>            
         </ContentTemplate>

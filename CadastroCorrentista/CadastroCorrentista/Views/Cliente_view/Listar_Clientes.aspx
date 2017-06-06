@@ -156,7 +156,7 @@
                     </tr>
                 </SelectedItemTemplate>
             </asp:ListView>
-            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:CadastroBancarioDBConnectionString %>" SelectCommand="SELECT Clientes.Nome, Clientes.Cpf, Clientes.Sexo, Agencias.Nome AS Agencia, Clientes.Conta, Agencias.Gerente FROM Agencias INNER JOIN Clientes ON Agencias.Id = Clientes.AgenciaId WHERE (Clientes.Ativo = 1) ORDER BY Clientes.Nome"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:CadastroCorrentistaDBConnectionString %>" SelectCommand="SELECT Clientes.Nome, Clientes.Cpf, Clientes.Sexo, Agencias.Nome AS Agencia, Clientes.Conta, Agencias.Gerente FROM Agencias INNER JOIN Clientes ON Agencias.Id = Clientes.AgenciaId WHERE (Clientes.Ativo = 1) ORDER BY Clientes.Nome"></asp:SqlDataSource>
         </div>
         </ContentTemplate>
     </asp:UpdatePanel>
