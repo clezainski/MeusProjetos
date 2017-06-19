@@ -11,108 +11,112 @@ using Web.Models;
 
 namespace Web.Controllers
 {
-    public class CategoriasController : Controller
+    public class ProdutosController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Categorias
+        // GET: Produtos
         public ActionResult Index()
         {
-            return View(db.Categorias.ToList());
+            var produtoes = db.Produtos.Include(p => p._Categoria);
+            return View(produtoes.ToList());
         }
 
-        // GET: Categorias/Details/5
+        // GET: Produtos/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categoria categoria = db.Categorias.Find(id);
-            if (categoria == null)
+            Produto produto = db.Produtos.Find(id);
+            if (produto == null)
             {
                 return HttpNotFound();
             }
-            return View(categoria);
+            return View(produto);
         }
 
-        // GET: Categorias/Create
+        // GET: Produtos/Create
         public ActionResult Create()
         {
+            ViewBag.CategoriaID = new SelectList(db.Categorias, "CategoriaID", "Nome");
             return View();
         }
 
-        // POST: Categorias/Create
+        // POST: Produtos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CategoriaID,Nome,Descricao")] Categoria categoria)
+        public ActionResult Create([Bind(Include = "ProdutoID,Nome,Descricao,Preco,Ativo,CategoriaID")] Produto produto)
         {
             if (ModelState.IsValid)
             {
-                categoria.Ativo = true;
-                db.Categorias.Add(categoria);
+                db.Produtos.Add(produto);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(categoria);
+            ViewBag.CategoriaID = new SelectList(db.Categorias, "CategoriaID", "Nome", produto.CategoriaID);
+            return View(produto);
         }
 
-        // GET: Categorias/Edit/5
+        // GET: Produtos/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categoria categoria = db.Categorias.Find(id);
-            if (categoria == null)
+            Produto produto = db.Produtos.Find(id);
+            if (produto == null)
             {
                 return HttpNotFound();
             }
-            return View(categoria);
+            ViewBag.CategoriaID = new SelectList(db.Categorias, "CategoriaID", "Nome", produto.CategoriaID);
+            return View(produto);
         }
 
-        // POST: Categorias/Edit/5
+        // POST: Produtos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CategoriaID,Nome,Descricao,Ativo")] Categoria categoria)
+        public ActionResult Edit([Bind(Include = "ProdutoID,Nome,Descricao,Preco,Ativo,CategoriaID")] Produto produto)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(categoria).State = EntityState.Modified;
+                db.Entry(produto).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(categoria);
+            ViewBag.CategoriaID = new SelectList(db.Categorias, "CategoriaID", "Nome", produto.CategoriaID);
+            return View(produto);
         }
 
-        // GET: Categorias/Delete/5
+        // GET: Produtos/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categoria categoria = db.Categorias.Find(id);
-            if (categoria == null)
+            Produto produto = db.Produtos.Find(id);
+            if (produto == null)
             {
                 return HttpNotFound();
             }
-            return View(categoria);
+            return View(produto);
         }
 
-        // POST: Categorias/Delete/5
+        // POST: Produtos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Categoria categoria = db.Categorias.Find(id);
-            db.Categorias.Remove(categoria);
+            Produto produto = db.Produtos.Find(id);
+            db.Produtos.Remove(produto);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

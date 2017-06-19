@@ -22,6 +22,7 @@ namespace BaseModels
         [Required]
         public bool Ativo { get; set; }
         
+        [Display(Name ="Categoria")]
         public int CategoriaID { get; set; }
 
         [Display(Name ="Categoria")]

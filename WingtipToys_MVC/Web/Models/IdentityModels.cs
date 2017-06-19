@@ -31,5 +31,7 @@ namespace Web.Models
         }
 
         public System.Data.Entity.DbSet<BaseModels.Categoria> Categorias { get; set; }
+
+        public System.Data.Entity.DbSet<BaseModels.Produto> Produtos { get; set; }
     }
 }

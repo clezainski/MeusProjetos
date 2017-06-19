@@ -1,14 +1,12 @@
 ﻿@model IEnumerable<BaseModels.Categoria>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Categorias";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -43,3 +41,7 @@
 }
 
 </table>
+
+<p>
+    @Html.ActionLink("Adicionar nova", "Create", null, new { @class = "btn btn-primary" })
+</p>
