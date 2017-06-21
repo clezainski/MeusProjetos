@@ -8,9 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using BaseModels;
 using Web.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Web.Controllers
 {
+    [Authorize]
     public class CategoriasController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -18,6 +20,8 @@ namespace Web.Controllers
         // GET: Categorias
         public ActionResult Index()
         {
+            ViewBag.Usuario = User.Identity.GetUserName();
+
             return View(db.Categorias.ToList());
         }
 
