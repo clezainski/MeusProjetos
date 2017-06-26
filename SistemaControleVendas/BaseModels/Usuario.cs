@@ -43,11 +43,19 @@ namespace BaseModels
         [DataType(DataType.Password)]
         public string ConfirmaSenha { get; set; }
 
-        [Display(Name = "Usuário administrador")]
         [Required]
-        public bool Administrador { get; set; }
+        [Display(Name ="Cursos")]
+        public virtual List<Curso> _Cursos { get; set; }
 
         [Required]
         public bool Ativo { get; set; }
+
+        [Required]
+        [Display(Name = "Perfil de usuário")]
+        public virtual Perfil _Perfil { get; set; }
+
+        [Required]
+        [Display(Name = "Perfil de usuário")]
+        public int PerfilID { get; set; }
     }
 }

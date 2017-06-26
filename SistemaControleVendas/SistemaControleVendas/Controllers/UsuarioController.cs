@@ -13,7 +13,7 @@ namespace SistemaControleVendas.Controllers
         // GET: Usuario
         public ActionResult Index()
         {
-            return View(db.contasDeUsuario.ToList());
+            return View(db.Usuarios.ToList());
         }
 
         public ActionResult Registro()
@@ -27,7 +27,7 @@ namespace SistemaControleVendas.Controllers
             if (ModelState.IsValid)
             {
                 conta.Ativo = true;
-                db.contasDeUsuario.Add(conta);
+                db.Usuarios.Add(conta);
                 db.SaveChanges();
                 Session.Clear();
                 ModelState.Clear();
@@ -44,19 +44,19 @@ namespace SistemaControleVendas.Controllers
         [HttpPost]
         public ActionResult Login(Usuario usuario)
         {
-            var user = db.contasDeUsuario.FirstOrDefault(x => x.NomeUsuario.Equals(usuario.NomeUsuario) && x.Senha.Equals(usuario.Senha));
+            var user = db.Usuarios.FirstOrDefault(x => x.NomeUsuario.Equals(usuario.NomeUsuario) && x.Senha.Equals(usuario.Senha));
             if (user != null)
             {
                 Session["UserID"] = user.UsuarioID.ToString();
                 Session["Username"] = user.NomeUsuario.ToString();
-                if (user.Administrador == true)
-                {
-                    Session["Level"] = "admin";
-                }
-                else
-                {
-                    Session["Level"] = "common";
-                }
+                //if (user.Administrador == true)
+                //{
+                //    Session["Level"] = "admin";
+                //}
+                //else
+                //{
+                //    Session["Level"] = "common";
+                //}
                 return RedirectToAction("Logado");
             }
             else
@@ -91,12 +91,12 @@ namespace SistemaControleVendas.Controllers
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
-            var usuario = db.contasDeUsuario.Find(id);
+            var usuario = db.Usuarios.Find(id);
             if (usuario == null)
             {
                 return HttpNotFound();
             }
-            return View(produto);
+            return View();
         }
     }
 }

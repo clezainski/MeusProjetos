@@ -9,6 +9,8 @@ namespace SistemaControleVendas.Controllers
 {
     public class DBContext : DbContext
     {
-        public DbSet <Usuario> contasDeUsuario { get; set; }
+        public DbSet <Usuario> Usuarios { get; set; }
+        public DbSet<Perfil> Perfis { get; set; }
+        public DbSet<Curso> Cursos { get; set; }
     }
 }
