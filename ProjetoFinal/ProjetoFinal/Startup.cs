@@ -35,10 +35,10 @@ namespace ProjetoFinal
                 //Here we create a Administrador super user who will maintain the website                  
 
                 var user = new ApplicationUser();
-                user.UserName = "shanu";
-                user.Email = "syedshanumcain@gmail.com";
+                user.UserName = "cleverson";
+                user.Email = "cleversonlezainski@gmail.com";
 
-                string userPWD = "A@Z200711";
+                string userPWD = ".2S457t84a";
 
                 var chkUser = UserManager.Create(user, userPWD);
 
@@ -46,7 +46,6 @@ namespace ProjetoFinal
                 if (chkUser.Succeeded)
                 {
                     var result1 = UserManager.AddToRole(user.Id, "Administrador");
-
                 }
             }
         }
