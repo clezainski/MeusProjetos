@@ -1,0 +1,36 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+@{
+    ViewBag.Title = "Apagar";
+}
+
+<h4>Tem certeza que deseja excluir este perfil de usuário?</h4>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <text><b>Nome do Perfil:</b></text>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)            
+        </dd>
+    </dl>
+    @if (ViewBag.Menssagem != null)
+            {
+        <div class="form-group">
+            <div class="col-md-10">@ViewBag.Menssagem</div>
+        </div>
+    }
+    <hr />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <p>
+            <div class="form-actions no-color">
+                <input type="submit" value="Apagar" class="btn btn-danger" /> |
+                @Html.ActionLink("Voltar para a lista", "Index")
+            </div>
+        </p>
+    }
+</div>
+

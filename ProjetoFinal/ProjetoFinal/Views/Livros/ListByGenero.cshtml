@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ProjetoFinal.Models.Livro>
+
+@{
+    ViewBag.Title = "Livros por genêro";
+}
+
+<h2>ListByGenero</h2>
+@if (ViewBag.Menssagem != null)
+{
+    <div class="form-group">
+        <div class="col-md-10">@ViewBag.Menssagem</div>
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model._literatura.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Autor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item._literatura.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @if (User.IsInRole("Administrador"))
+                {
+                    @Html.ActionLink("Alterar |", "Edit", new { id = item.LivroID })
+                    @Html.ActionLink(" Apagar |", "Delete", new { id = item.LivroID })
+                }
+                @Html.ActionLink("Detalhes", "Details", new { id = item.LivroID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Retornar", "Index", "Literaturas") | 
+    @Html.ActionLink("Novo livro", "Create", null, new { @class = "btn btn-primary" })
+</p>

@@ -49,16 +49,16 @@ namespace ProjetoFinal.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "E-mail")]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Senha")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Lembrar?")]
         public bool RememberMe { get; set; }
     }
 
@@ -70,6 +70,9 @@ namespace ProjetoFinal.Models
         //dados customisados
         [Required]
         public string Nome { get; set; }
+
+        [Required]
+        public int Idade { get; set; }
 
         [Required]
         public string Sobrenome { get; set; }

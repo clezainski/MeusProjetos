@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ProjetoFinal.Models.Literatura>
+
+@{
+    ViewBag.Title = "Lista de gêneros literários";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Idade)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="@Url.Action("ListByGenero", "Livros", new { id = item.LiteraturaID })">
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Idade)
+            </td>
+            <td>
+                @if (User.IsInRole("Administrador"))
+                {
+                    @Html.ActionLink("Alterar |", "Edit", new { id = item.LiteraturaID })
+                    @Html.ActionLink(" Apagar |", "Delete", new { id = item.LiteraturaID })
+                }
+                @Html.ActionLink("Detalhes", "Details", new { id = item.LiteraturaID })
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Novo gênero literário", "Create", null, new { @class = "btn btn-primary" })
+</p>

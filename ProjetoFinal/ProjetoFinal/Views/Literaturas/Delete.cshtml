@@ -1,0 +1,40 @@
+﻿@model ProjetoFinal.Models.Literatura
+
+@{
+    ViewBag.Title = "Excluir";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Você têm certeza que deseja apagar este genêro literário?</h3>
+<div>
+    <h4>Literatura</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Idade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Idade)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </div>
+    }
+</div>

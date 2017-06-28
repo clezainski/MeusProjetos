@@ -1,0 +1,34 @@
+﻿@model ProjetoFinal.Models.Literatura
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <h4>Literatura</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Idade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Idade)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Alterar", "Edit", new { id = Model.LiteraturaID }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>
