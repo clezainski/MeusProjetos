@@ -168,11 +168,12 @@ namespace ProjetoFinal.Controllers
                     {
                         //atribui perfil de usuário
                         await this.UserManager.AddToRoleAsync(user.Id, model.Name);
-
+                        ModelState.Clear();
                         
                         if (!User.IsInRole("Administrador"))
                         {
                             await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                            return View("Index");
                         }
 
                         // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
